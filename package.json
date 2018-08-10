@@ -1,8 +1,11 @@
 {
   "name": "irish",
   "version": "1.0.0",
-  "description": "",
+  "description": "Irish poker card game",
   "main": "index.js",
+  "engines": {
+    "node":"8.11.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack -d --watch",
