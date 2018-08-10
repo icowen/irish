@@ -8,10 +8,10 @@ class App extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <NavBar />
+                <NavBar />
+                <Router>
                     <Route name="home" exact path="/" component={HomePage} />
-                </div>
+                </Router>
             </div>
         )
     }
