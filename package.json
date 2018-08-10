@@ -4,7 +4,7 @@
   "description": "Irish poker card game",
   "main": "index.js",
   "engines": {
-    "node":"8.11.3"
+    "node": "8.11.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -36,10 +36,10 @@
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-router": "4.3.1",
-    "react-router-dom": "4.3.1"
+    "react-router-dom": "4.3.1",
+    "webpack": "4.16.5"
   },
   "devDependencies": {
-    "webpack-cli": "3.1.0",
-    "webpack-command": "0.4.1"
+    "webpack-cli": "3.1.0"
   }
 }
