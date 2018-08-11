@@ -20,3 +20,9 @@ footer {
     background-color: black;
     color: white;
 }
+
+.site-title {
+    font-size: 32px;
+    color: darkgreen;
+    text-align: center;
+}
