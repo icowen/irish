@@ -26,6 +26,10 @@ module.exports = {
                 loader: 'file-loader'
             },
             {
+                test: /\.(png|jpg)$/,
+                loader: 'url?limit=25000'
+            },
+            {
                 test : /\.jsx?/,
                 include : SRC_DIR,
                 loader : 'babel-loader',

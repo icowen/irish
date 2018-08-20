@@ -26,3 +26,13 @@ footer {
     color: darkgreen;
     text-align: center;
 }
+
+.round {
+    font-size: 24px;
+    color: darkgreen;
+    text-align: center;
+}
+.cards {
+    display: inline-flex;
+    background-color: brown;
+}

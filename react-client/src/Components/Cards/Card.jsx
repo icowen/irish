@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import CardShowing from './CardShowing';
+import CardHidden from './CardHidden';
 
 export default class Card extends Component {
-    constructor(props) {
-        super(props);
-        this.suit = this.props.suit;
-        this.value = this.props.value;
-    }
     render() {
-        return (
-            <div>
-                <div className={'card-suit'}>{this.suit}</div>
-                <div className={'card-value'}>{this.value}</div>
-            </div>
-        )
+        const {suit, value, showing} = this.props;
+        const showingCard = <CardShowing suit={suit} value={value}/>;
+        const hiddenCard = <CardHidden />;
+        const displayingCard = showing ? showingCard : hiddenCard;
+
+        return (displayingCard);
     }
 }
+
+Card.defaultProps = {
+    showing: false
+};
+
+Card.propTypes = {
+    showing: PropTypes.bool,
+    suit: PropTypes.string,
+    value: PropTypes.number
+};

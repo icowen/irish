@@ -36,6 +36,7 @@
     "babel-preset-react": "6.24.1",
     "body-parser": "1.18.3",
     "express": "4.16.3",
+    "prop-types": "^15.6.2",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-router": "4.3.1",
@@ -57,6 +58,8 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./setupEnzyme.js",
-    "testPathIgnorePatterns": ["./setupEnzyme.js"]
+    "testPathIgnorePatterns": [
+      "./setupEnzyme.js"
+    ]
   }
 }
