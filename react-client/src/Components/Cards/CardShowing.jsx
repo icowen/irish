@@ -6,7 +6,7 @@ export default class CardShowing extends Component {
         const {suit, value} = this.props;
 
         return (
-            <div>
+            <div className={'showing card'}>
                 <div className={'card-suit'}>{suit}</div>
                 <div className={'card-value'}>{value}</div>
             </div>

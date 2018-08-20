@@ -34,5 +34,21 @@ footer {
 }
 .cards {
     display: inline-flex;
-    background-color: brown;
+}
+
+.card {
+    height: 30%;
+    width: 20%;
+    padding: 16px;
+    margin: auto;
+    animation: colorchange 60s linear infinite;
+    -webkit-animation: colorchange 60s linear infinite;
+}
+
+@-webkit-keyframes colorchange {
+    0%   {background: green}
+    25%  {background: greenyellow}
+    50%  {background: lawngreen}
+    75%  {background: limegreen}
+    100% {background: darkgreen}
 }
