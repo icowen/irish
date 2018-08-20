@@ -19,15 +19,18 @@ module.exports = {
             },
             {
                 test: /\.png$/,
-                loader: 'url-loader?limit=100000&minetype=image/png'
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192
+                        }
+                    }
+                    ]
             },
             {
                 test: /\.jpg/,
                 loader: 'file-loader'
-            },
-            {
-                test: /\.(png|jpg)$/,
-                loader: 'url?limit=25000'
             },
             {
                 test : /\.jsx?/,
