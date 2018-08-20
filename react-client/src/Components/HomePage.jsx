@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import Card from "./Cards/Card";
 
-class HomePage extends Component {
+export default class HomePage extends Component {
     constructor (props) {
         super(props);
         this.state = {
             round: 0
         };
-
         this.cardFlip = this.cardFlip.bind(this);
     }
 
     cardFlip (){
         this.setState({round: this.state.round + 1});
-
     }
 
 
     render() {
-
         return (
             <div>
                 <div className={'site-title'}>{`Irish Poker`}</div>
@@ -41,4 +38,3 @@ class HomePage extends Component {
         )
     }
 }
-export default HomePage;
