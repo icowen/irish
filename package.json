@@ -52,6 +52,7 @@
     "enzyme": "3.4.1",
     "enzyme-adapter-react-16": "1.2.0",
     "enzyme-to-json": "3.3.4",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "23.5.0",
     "react-test-renderer": "16.4.2",
     "webpack-cli": "3.1.0"
@@ -60,6 +61,9 @@
     "setupTestFrameworkScriptFile": "./setupEnzyme.js",
     "testPathIgnorePatterns": [
       "./setupEnzyme.js"
-    ]
+    ],
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    }
   }
 }
