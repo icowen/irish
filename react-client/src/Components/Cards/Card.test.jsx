@@ -27,7 +27,7 @@ describe('card that is not flipped over yet', function () {
 describe('card that is flipped over', function () {
     const cardShowing = shallow(<Card suit={'Clubs'}
                                       value={13}
-                                      round={1}/>);
+                                      showing={true}/>);
 
     it('should not render a CardHidden', function () {
         expect(cardShowing.find(CardHidden).length).toEqual(0)

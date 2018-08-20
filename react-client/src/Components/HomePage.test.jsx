@@ -24,7 +24,7 @@ describe('Home Page', function () {
     });
 
     it('should pass in a card value', function () {
-        expect(cardOne.props().round).toEqual(0);
+        expect(cardOne.props().showing).toEqual(false);
     });
 
     it('should pass in a card value', function () {

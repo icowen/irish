@@ -6,11 +6,14 @@ class HomePage extends Component {
         super(props);
         this.state = {
             round: 0
-        }
+        };
+
+        this.cardFlip = this.cardFlip.bind(this);
     }
 
     cardFlip (){
-        this.state.round =+ 1;
+        this.setState({round: this.state.round + 1});
+
     }
 
 
@@ -22,16 +25,16 @@ class HomePage extends Component {
                 <div className={'round'}>{`Round ${this.state.round}`}</div>
                 <div className={'cards'}>
                     <Card className={'card-one'} suit={'diamonds'}
-                          value={13} round={this.state.round}
+                          value={13} showing={this.state.round >= 1}
                           onClick={this.cardFlip}/>
                     <Card className={'card-two'} suit={'hearts'}
-                          value={12} round={this.state.round}
+                          value={12} showing={this.state.round >= 2}
                           onClick={this.cardFlip}/>
                     <Card className={'card-three'} suit={'clubs'}
-                          value={1} round={this.state.round}
+                          value={1} showing={this.state.round >= 3}
                           onClick={this.cardFlip}/>
                     <Card className={'card-four'} suit={'spades'}
-                          value={5} round={this.state.round}
+                          value={5} showing={this.state.round >= 4}
                           onClick={this.cardFlip}/>
                 </div>
         </div>

@@ -5,8 +5,7 @@ import CardHidden from './CardHidden';
 
 export default class Card extends Component {
     render() {
-        const {suit, value, round, onClick} = this.props;
-        const showing = round === 1;
+        const {suit, value, showing, onClick} = this.props;
         const showingCard = <CardShowing suit={suit} value={value}/>;
         const hiddenCard = <CardHidden onClick={onClick}/>;
         const displayingCard = showing ? showingCard : hiddenCard;
@@ -21,7 +20,7 @@ Card.defaultProps = {
 
 Card.propTypes = {
     onClick: PropTypes.func,
-    round: PropTypes.number,
+    showing: PropTypes.bool,
     suit: PropTypes.string,
     value: PropTypes.number
 };
