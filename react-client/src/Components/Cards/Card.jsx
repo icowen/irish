@@ -5,9 +5,10 @@ import CardHidden from './CardHidden';
 
 export default class Card extends Component {
     render() {
-        const {suit, value, showing} = this.props;
+        const {suit, value, round, onClick} = this.props;
+        const showing = round === 1;
         const showingCard = <CardShowing suit={suit} value={value}/>;
-        const hiddenCard = <CardHidden />;
+        const hiddenCard = <CardHidden onClick={onClick}/>;
         const displayingCard = showing ? showingCard : hiddenCard;
 
         return (displayingCard);
@@ -15,11 +16,12 @@ export default class Card extends Component {
 }
 
 Card.defaultProps = {
-    showing: false
+    round: 0
 };
 
 Card.propTypes = {
-    showing: PropTypes.bool,
+    onClick: PropTypes.func,
+    round: PropTypes.number,
     suit: PropTypes.string,
     value: PropTypes.number
 };
