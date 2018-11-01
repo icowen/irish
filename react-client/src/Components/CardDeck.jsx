@@ -23,7 +23,7 @@ export default class CardDeck extends Component {
         return cardDeck;
     }
 
-    shuffleDeck(deck) {
+    static shuffleDeck(deck) {
         for (let i = deck.length - 1; i > 0; i--) {
             let randomIndex = Math.floor(Math.random() * i);
 
@@ -32,19 +32,16 @@ export default class CardDeck extends Component {
             deck[randomIndex] = temp;
         }
     }
+}
 
-    getCards (numberOfCards) {
-        const index = [];
-        const returnCards = [];
-        for(let i = 0; i < numberOfCards; i++) {
-            let selected = Math.round(Math.random() * 52);
-            console.log(selected);
-            index.push(selected);
-            returnCards.push(<div>this.state.availableCards[selected]</div>);
-            this.setState({availableCards: this.state.availableCards.splice(selected, 1)});
-        }
-        return returnCards;
+export function getCards (numberOfCards) {
+    const index = [];
+    const returnCards = [];
+    for(let i = 0; i < numberOfCards; i++) {
+        let selected = Math.round(Math.random() * 52);
+        console.log(selected);
+        index.push(selected);
+        returnCards.push(this.state.availableCards.pop());
     }
-
-    render() { return( this.state.availableCards ) }
+    return returnCards;
 }
