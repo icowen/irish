@@ -1,39 +1,29 @@
 import React from "react";
 import {shallow} from "enzyme";
 import Card from './Card';
-import CardShowing from './CardShowing';
-import CardHidden from './CardHidden';
 
 const card = shallow(<Card suit={'Clubs'}
                            value={13}
-                           round={0}
-                           onClick={() => {return true}}/>);
-const hiddenCard = card.find(CardHidden);
+                           showing={false}
+                           cardFlip={jest.fn()}/>);
 
-describe('card that is not flipped over yet', function () {
-
-    it('should not render a CardShowing', function () {
-        expect(card.find(CardShowing).length).toEqual(0)
-    });
-    it('should render a CardHidden', function () {
-        expect(hiddenCard.length).toEqual(1)
-    });
-
-    it('should pass in an on click function to the hidden card', function () {
-        expect(hiddenCard.props().onClick).toBeTruthy();
+describe('card that is face down', function () {
+    it('should show a face down card', function () {
+        expect(card.find('.facedown-card').length).toEqual(1);
     });
 });
 
-describe('card that is flipped over', function () {
+describe('card that is face up', function () {
     const cardShowing = shallow(<Card suit={'Clubs'}
                                       value={13}
-                                      showing={true}/>);
+                                      showing={true}
+                                      cardFlip={jest.fn()}/>);
 
-    it('should not render a CardHidden', function () {
-        expect(cardShowing.find(CardHidden).length).toEqual(0)
+    it('should flip the card when clicked', function () {
+        expect(cardShowing.find('.card-value').props().children).toEqual(13)
     });
 
-    it('should render a CardShowing', function () {
-        expect(cardShowing.find(CardShowing).props()).toEqual({'suit': 'Clubs', 'value': 13})
+    it('should display card suit', function () {
+        expect(cardShowing.find('.card-suit').props().children).toEqual('Clubs')
     });
 });

@@ -35,6 +35,7 @@ export default class RoundOne extends Component {
         let round4 = round >= 4;
         return (
             <div className={'cards'}>
+                <CardDeck numberOfCards={4}/>
                 <Card className={'card-one'}
                     card={cardList[0]}
                     showing={round1}
@@ -51,7 +52,6 @@ export default class RoundOne extends Component {
                       card={cardList[3]}
                       showing={round4}
                       onClick={onClick}/>
-                <CardDeck numberOfCards={4}/>
             </div>
         )
     }

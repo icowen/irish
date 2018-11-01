@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CardShowing from './CardShowing';
-import CardHidden from './CardHidden';
+import cardBack from './poptart.png';
 
 export default class Card extends Component {
-    render() {
-        const {suit, value, showing, onClick} = this.props;
-        const showingCard = <CardShowing suit={suit} value={value}/>;
-        const hiddenCard = <CardHidden onClick={onClick}/>;
-        const displayingCard = showing ? showingCard : hiddenCard;
+    constructor (props) {
+        super(props);
+    }
 
-        return (displayingCard);
+    render() {
+        const {suit, value, showing, cardFlip} = this.props;
+        let card = showing ?
+            (<div className={'faceup-card'}>
+                <div className={'card-suit'}>{suit}</div>
+                <div className={'card-value'}>{value}</div>
+            </div>
+            ) :
+            (<div className={'facedown-card'} onClick={cardFlip}>
+                <img className={'card-picture'} src={cardBack} />
+            </div>);
+
+        return (card);
     }
 }
 
-Card.defaultProps = {
-    round: 0
-};
-
 Card.propTypes = {
-    onClick: PropTypes.func,
+    cardFlip: PropTypes.func,
     showing: PropTypes.bool,
     suit: PropTypes.string,
     value: PropTypes.number
