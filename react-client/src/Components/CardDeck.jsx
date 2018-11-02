@@ -5,9 +5,9 @@ export default class CardDeck extends Component {
     constructor () {
         super();
         this.state = {
-            availableCards: this.initializeDeck()
+            availableCards: this.initializeDeck(),
+            turn: 1
         };
-        this.getCards = this.getCards.bind(this);
     }
 
     initializeDeck () {
@@ -16,14 +16,18 @@ export default class CardDeck extends Component {
         const cardDeck = [];
         for (let suit in suits) {
             for (let value in values) {
-                cardDeck.push(<Card key={suit + value} value={Number(value)} suit={suit} />);
+                cardDeck.push(<Card
+                    key={suit + value}
+                    value={Number(value)}
+                    suit={suit}
+                    showing={false}/>);
             }
         }
         this.shuffleDeck(cardDeck);
         return cardDeck;
     }
 
-    static shuffleDeck(deck) {
+    shuffleDeck(deck) {
         for (let i = deck.length - 1; i > 0; i--) {
             let randomIndex = Math.floor(Math.random() * i);
 
@@ -32,16 +36,20 @@ export default class CardDeck extends Component {
             deck[randomIndex] = temp;
         }
     }
-}
 
-export function getCards (numberOfCards) {
-    const index = [];
-    const returnCards = [];
-    for(let i = 0; i < numberOfCards; i++) {
-        let selected = Math.round(Math.random() * 52);
-        console.log(selected);
-        index.push(selected);
-        returnCards.push(this.state.availableCards.pop());
+    getCards (numberOfCards) {
+        const index = [];
+        const returnCards = [];
+        for(let i = 0; i < numberOfCards; i++) {
+            let selected = Math.round(Math.random() * 52);
+            console.log(selected);
+            index.push(selected);
+            returnCards.push(this.state.availableCards.pop());
+        }
+        return returnCards;
     }
-    return returnCards;
+
+    render () {
+        return this.getCards(4);
+    }
 }
