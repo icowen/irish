@@ -1,7 +1,7 @@
 import HomePage from "./HomePage";
 import React from "react";
 import {shallow} from "enzyme";
-import Card from './Cards/Card'
+import Card from './CardDeck/Card'
 
 describe('Home Page', function () {
     const component = shallow(<HomePage/>);

@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
-import Card from "../Cards/Card";
 import PropTypes from 'prop-types';
-import {getCards} from "../CardDeck";
+import CardHand from "../CardDeck/CardHand";
+import Deck from "../CardDeck/Deck";
 
 export default class RoundOne extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
+        this.state = {
+            availableCards: new Deck(),
+            round: 0,
+            turn: 0
+        };
     }
 
     render() {
-        const {onClick, round} = this.props;
-        const cardList = this.getCards();
-        let round1 = round >= 1;
-        let round2 = round >= 2;
-        let round3 = round >= 3;
-        let round4 = round >= 4;
+        this.state.availableCards.initDeck();
         return (
-            <div className={'cards'}>
-                {getCards(4)}
+            <div>
+                <CardHand cards={this.state.availableCards.getCards(4)}/>
             </div>
         )
     }
 }
 
 RoundOne.propTypes = {
-    onClick: PropTypes.func,
-    round: PropTypes.number
+
 };
