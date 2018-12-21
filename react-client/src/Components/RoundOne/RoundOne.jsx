@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CardHand from "../CardDeck/CardHand";
 import Deck from "../CardDeck/Deck";
 import Player from "../Player";
 
@@ -8,32 +7,30 @@ export default class RoundOne extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            availableCards: new Deck().initDeck(),
-            round: this.props.round,
-            players: [],
-            numPlayers: this.props.numPlayers,
-            turn: 0
+            deck: new Deck(),
+            round: this.props.round
         };
+        this.players = [];
         this.deal = this.deal.bind(this);
+        this.deal();
     }
 
     deal () {
-        for(let player in Array(this.props.numPlayers).keys()) {
-            let p = this.state.players;
-            this.setState({players: [...p, new Player({cards: this.state.availableCards.getCards(4),
-                                                       turn: this.state.turn,
-                                                       numPlayers: this.state.numPlayers,
-                                                       id: player})]
-            });
+        let p = [];
+        const n = this.props.numPlayers;
+        for(let i = 0; i < n; i++) {
+            let hand = this.state.deck.getCards(4);
+            console.log('hand: ' + hand);
+            p.push(<Player numPlayers={this.props.numPlayers} cards={hand} turn={this.state.turn} id={i}/>);
         }
+        this.players = p;
+        console.log('players:' + this.players);
     }
 
     render() {
-        this.deal();
-        console.log(this.state.availableCards.length);
         return (
             <div>
-                {this.state.players.map(player => (
+                {this.players.map(player => (
                     player
                 ))}
             </div>

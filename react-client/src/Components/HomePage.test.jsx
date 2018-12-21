@@ -9,17 +9,15 @@ describe('Home Page', function () {
         expect(component.find('.site-title').text()).toEqual('Irish Poker');
     });
 
-    it('should have round one', function () {
-        expect(component.find('.one').length).toEqual(1);
-    });
-
-    it('should pass in the correct props to round one', function () {
-        let roundOne = component.find('.one');
-        expect(roundOne.props().round).toEqual(0);
-        expect(roundOne.props().numPlayers).toEqual(1);
-    });
-
     it('should have a players dropdown', function () {
         expect(component.find('PlayersDropdown').length).toEqual(1);
+        expect(component.find('RoundOne').length).toEqual(0);
+    });
+
+    it('should have a Round one once players dropdown is clicked', function () {
+        component.instance().selectPlayers(9);
+        expect(component.find('RoundOne').length).toEqual(1);
+        expect(component.find('RoundOne').props().numPlayers).toEqual(9);
+        expect(component.find('PlayersDropdown').length).toEqual(0);
     });
 });

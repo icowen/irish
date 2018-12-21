@@ -7,7 +7,9 @@ export default class HomePage extends Component {
         super(props);
         this.state = {
             round: 0,
-            numPlayers: 1
+            numPlayers: 1,
+            component: null
+
         };
         this.cardFlip = this.cardFlip.bind(this);
         this.selectPlayers = this.selectPlayers.bind(this);
@@ -18,17 +20,22 @@ export default class HomePage extends Component {
     }
 
     selectPlayers(numPlayers) {
-        this.setState({numPlayers: numPlayers});
+        this.setState({ numPlayers: numPlayers});
+        this.setState({component: <RoundOne className={'one'}
+                                            round={this.state.round}
+                                            numPlayers={numPlayers}/>});
     }
 
     render() {
+        let component = this.state.component ?
+            this.state.component : <PlayersDropdown onClick={this.selectPlayers}/>;
+
         return (
             <div>
                 <div className={'site-title'}>{`Irish Poker`}</div>
                 <div className={'round'}>{`Round ${this.state.round}`}</div>
-                <PlayersDropdown onClick={this.selectPlayers}/>
                 <div className={'round'}>{`Number of Players: ${this.state.numPlayers}`}</div>
-                <RoundOne className={'one'} round={this.state.round} numPlayers={this.state.numPlayers}/>
+                {component}
             </div>
         )
     }
