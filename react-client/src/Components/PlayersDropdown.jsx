@@ -4,14 +4,11 @@ import PropTypes from 'prop-types';
 export default class PlayersDropdown extends Component {
     constructor() {
         super();
+        this.onClick = this.onClick.bind(this);
     }
 
-    selectPlayers () {
-        this.props.onClick;
-    }
-
-    showOptions() {
-        document.getElementById("myDropdown").style.display("block");
+    onClick() {
+        this.props.onClick(document.getElementById('myDropdown').value);
     }
 
     render() {
@@ -19,7 +16,7 @@ export default class PlayersDropdown extends Component {
             <div>
                 <div className={"num-players"}>{"# of Players"}</div>
                 <div className="dropdown">
-                    <select id="myDropdown" className="dropdown-content">
+                    <select autoFocus id="myDropdown" className="dropdown-content">
                         <option value={1}>1</option>
                         <option value={2}>2</option>
                         <option value={3}>3</option>
@@ -30,7 +27,7 @@ export default class PlayersDropdown extends Component {
                         <option value={8}>8</option>
                         <option value={9}>9</option>
                     </select>
-                    <button className="dropbtn">Play</button>
+                    <button type={'submit'} onClick={this.onClick} className="dropbtn">Play</button>
                 </div>
             </div>)
     }
