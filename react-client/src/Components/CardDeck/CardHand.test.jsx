@@ -6,10 +6,10 @@ import Card from "./Card";
 describe('CardHand', function () {
     const component = shallow(<CardHand
         cards={[
-                <Card suit={'H'} value={13} key={1}/>,
-                <Card suit={'D'} value={1} key={2}/>,
-                <Card suit={'C'} value={9} key={3}/>,
-                <Card suit={'S'} value={10} key={4}/>
+                <Card suit={'H'} value={'13'} key={1}/>,
+                <Card suit={'D'} value={'1'} key={2}/>,
+                <Card suit={'C'} value={'9'} key={3}/>,
+                <Card suit={'S'} value={'10'} key={4}/>
         ]}
     />);
     const cardOne = component.find('.cards').props().children[1];
@@ -20,6 +20,6 @@ describe('CardHand', function () {
 
     it('should pass in the correct params to each Card', function () {
         expect(cardOne.props.suit).toEqual('D');
-        expect(cardOne.props.value).toEqual(1);
+        expect(cardOne.props.value).toEqual('1');
     });
 });

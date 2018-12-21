@@ -11,7 +11,7 @@ describe('Card', function () {
     const component = shallow(<Card
                                 onClick={jest.fn()}
                                 suit={'H'}
-                                value={6}
+                                value={'6'}
                                 faceUp={true}/>);
 
     it('should display the correct img (face up)', function () {
@@ -24,7 +24,7 @@ describe('Card starting face down', function () {
     const component = shallow(<Card
         onClick={jest.fn()}
         suit={'H'}
-        value={6}/>);
+        value={'6'}/>);
 
     it('should display the correct img (face down)', function () {
         expect(component.find('img').props().src).toEqual('picture');

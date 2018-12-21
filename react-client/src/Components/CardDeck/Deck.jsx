@@ -5,6 +5,7 @@ export default class Deck{
     constructor() {
         this.availableCards = [];
         this.dealtCards = [];
+        this.initDeck();
     }
 
     initDeck() {
