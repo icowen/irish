@@ -21,7 +21,10 @@ export default class RoundOne extends Component {
         for(let i = 0; i < n; i++) {
             let hand = this.state.deck.getCards(4);
             console.log('hand: ' + hand);
-            p.push(<Player numPlayers={this.props.numPlayers} cards={hand} turn={this.state.turn} id={i}/>);
+            p.push(<Player numPlayers={this.props.numPlayers}
+                           cards={hand}
+                           turn={this.state.turn}
+                           id={i}/>);
         }
         this.players = p;
         console.log('players:' + this.players);
@@ -30,9 +33,7 @@ export default class RoundOne extends Component {
     render() {
         return (
             <div>
-                {this.players.map(player => (
-                    player
-                ))}
+                {this.players.map(player => (player))}
             </div>
         )
     }

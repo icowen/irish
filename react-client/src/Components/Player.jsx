@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 export default class Player extends Component{
     constructor() {
         super();
-        this.state = {
-            turn: false
-        }
     }
 
     render() {

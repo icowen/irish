@@ -6,30 +6,33 @@ export default class Card extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            isAvailable: false,
-            faceUp: this.props.faceUp
+            src: cardBack
         };
-        this.cardFlip = this.cardFlip.bind(this);
+        this.onClick = this.onClick.bind(this);
+        this.flipCard = this.flipCard.bind(this);
     }
 
-    cardFlip (){
-        this.setState({faceUp: !this.state.faceUp});
+    flipCard() {
+        const {value, suit} = this.props;
+        this.setState({src: `${require(`../../Images/CardFronts/${value}${suit}.png`)}`});
+    }
+
+    onClick (){
+        if(this.props.isActive) {
+            this.flipCard();
+            this.props.onClick();
+        }
     }
 
     render() {
-        const {suit, value} = this.props;
-        let src = `${require(`../../Images/CardFronts/${value}${suit}.png`)}`;
-        if(!this.state.faceUp) {
-            src = cardBack;
+        if(this.props.faceUp) {
+            this.flipCard();
         }
-
-        return ( <img className={'card back'} src={src} onClick={this.cardFlip}/>)
+        return ( <img className={'card'}
+                      src={this.state.src}
+                      onClick={this.onClick}/>)
     }
 }
-
-Card.defaultProps = {
-    faceUp: false
-};
 
 Card.propTypes = {
     faceUp: PropTypes.bool,
