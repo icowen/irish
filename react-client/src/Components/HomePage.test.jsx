@@ -17,7 +17,18 @@ describe('Home Page', function () {
     it('should have a Round one once players dropdown is clicked', function () {
         component.instance().selectPlayers(9);
         expect(component.find('RoundOne').length).toEqual(1);
-        expect(component.find('RoundOne').props().numPlayers).toEqual(9);
+        expect(component.find('RoundOne').props().players.length).toEqual(9);
         expect(component.find('PlayersDropdown').length).toEqual(0);
+    });
+
+    it('should move to round two once round one is over', function () {
+        let instance = component.instance();
+        instance.selectPlayers(1);
+        instance.cardFlip();
+        instance.cardFlip();
+        instance.cardFlip();
+        instance.cardFlip();
+        expect(component.find('RoundTwo').length).toEqual(1);
+
     });
 });

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import RoundOne from "./RoundOne/RoundOne";
+import RoundOne from "./Rounds/RoundOne";
 import PlayersDropdown from "./PlayersDropdown";
 import Deck from "./CardDeck/Deck";
 import Player from "./Player";
+import RoundTwo from "./Rounds/RoundTwo";
 
 export default class HomePage extends Component {
     constructor (props) {
@@ -13,14 +14,16 @@ export default class HomePage extends Component {
             round: 0,
             numPlayers: 1,
             component: <PlayersDropdown onClick={this.selectPlayers}/>,
-            deck: new Deck(this.cardFlip)
+            deck: new Deck(this.cardFlip),
+            players: []
         };
     }
 
     cardFlip (){
         const newRound = this.state.round + 1;
         if(newRound >= this.state.numPlayers*4) {
-            this.setState({round: 0, component: <RoundTwo />})
+            this.setState({round: 0, component: <RoundTwo players={this.state.players}
+                                                          boardCards={this.state.deck.getCards(8)}/>})
         } else (this.setState({round: newRound}))
     }
 
@@ -28,7 +31,7 @@ export default class HomePage extends Component {
         let p = [];
         for(let i = 0; i < numPlayers; i++) {
             let hand = this.state.deck.getCards(4);
-            p.push(<Player cards={hand}/>);
+            p.push(<Player cards={hand} id={i+1}/>);
         }
         this.setState({numPlayers: numPlayers,
                        players: p,
@@ -38,12 +41,7 @@ export default class HomePage extends Component {
 
     render() {
         return (
-            <div>
-                <div className={'site-title'}>{`Irish Poker`}</div>
-                <div className={'round'}>{`Round ${this.state.round}`}</div>
-                <div className={'round'}>{`Number of Players: ${this.state.numPlayers}`}</div>
-                {this.state.component}
-            </div>
+            <div className={'component'}>{this.state.component}</div>
         )
     }
 }

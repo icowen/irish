@@ -2,31 +2,21 @@ import React from "react";
 import {shallow} from "enzyme";
 import Card from './Card';
 
-describe('Active Card', function () {
+describe('Card', function () {
+    const mockCallback = jest.fn();
     const component = shallow(<Card
-                                onClick={jest.fn()}
+                                onClick={mockCallback}
                                 suit={'H'}
                                 value={'6'}
-                                faceUp={false}
-                                isActive={true}/>);
+                                faceUp={false}/>);
 
     it('should display the correct img (face up)', function () {
         //fileMocks.js and package.json moduleNameMapper
         expect(component.find('.card').props().src).toEqual('picture');
     });
-});
 
-describe('Non-Active Card', function () {
-    const mockCallback = jest.fn();
-    const component = shallow(<Card
-        onClick={mockCallback}
-        suit={'H'}
-        value={'6'}
-        faceUp={false}
-        isActive={false}/>);
-
-    it('should not call onclick', function () {
+    it('should call onClick function when clicked', function () {
         component.find('.card').simulate('click');
-        expect(mockCallback.mock.calls.length).toEqual(0);
+        expect(mockCallback.mock.calls.length).toEqual(1);
     });
 });

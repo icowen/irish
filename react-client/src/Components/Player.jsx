@@ -9,7 +9,8 @@ export default class Player extends Component{
 
     render() {
         return(
-            <div>
+            <div className={'player'}>
+                <div>{`Player ${this.props.id}`}</div>
                 <CardHand cards={this.props.cards}/>
             </div>
         );
@@ -17,5 +18,6 @@ export default class Player extends Component{
 }
 
 Player.propTypes = {
-    cards: PropTypes.array
+    cards: PropTypes.array,
+    id: PropTypes.number
 };
