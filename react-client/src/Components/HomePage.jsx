@@ -15,14 +15,17 @@ export default class HomePage extends Component {
             numPlayers: 1,
             component: <PlayersDropdown onClick={this.selectPlayers}/>,
             deck: new Deck(this.cardFlip),
-            players: []
+            players: [],
+            section: 0
         };
     }
 
     cardFlip (){
         const newRound = this.state.round + 1;
-        if(newRound >= this.state.numPlayers*4) {
-            this.setState({round: 0, component: <RoundTwo players={this.state.players}
+        if(newRound >= this.state.numPlayers*4 && this.state.section === 1) {
+            this.setState({ round: 0,
+                            section: 2,
+                            component: <RoundTwo players={this.state.players}
                                                           boardCards={this.state.deck.getCards(8)}/>})
         } else (this.setState({round: newRound}))
     }
@@ -35,6 +38,7 @@ export default class HomePage extends Component {
         }
         this.setState({numPlayers: numPlayers,
                        players: p,
+                       section: 1,
                        component: <RoundOne className={'one'}
                                             players={p}/>});
     }
