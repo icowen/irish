@@ -7,11 +7,18 @@ export default class Player extends Component{
         super();
     }
 
+    flipCards() {
+        return this.props.cards.map(card =>
+            React.cloneElement(card, {faceUp: true}));
+    }
+
     render() {
+        let cards = this.props.faceUpCards ?
+            this.flipCards() : this.props.cards;
         return(
             <div className={'player'}>
                 <div>{`Player ${this.props.id}`}</div>
-                <CardHand cards={this.props.cards}/>
+                <CardHand cards={cards}/>
             </div>
         );
     }
@@ -19,5 +26,6 @@ export default class Player extends Component{
 
 Player.propTypes = {
     cards: PropTypes.array,
+    faceUpCards: PropTypes.bool,
     id: PropTypes.number
 };

@@ -11,6 +11,12 @@ export default class Card extends Component {
         this.onClick = this.onClick.bind(this);
     }
 
+    componentDidMount() {
+        if(this.props.faceUp) {
+            this.flipCard();
+        }
+    }
+
     flipCard() {
         const {value, suit} = this.props;
         this.setState({src: `${require(`../../Images/CardFronts/${value}${suit}.png`)}`});
@@ -22,9 +28,6 @@ export default class Card extends Component {
     }
 
     render() {
-        if(this.props.faceUp) {
-            this.flipCard();
-        }
         return ( <img className={'card'}
                       src={this.state.src}
                       onClick={this.onClick}/>)

@@ -23,7 +23,7 @@ export default class RoundTwo extends Component {
                 </div>
                 <div className={'players'}>
                     {this.props.players.map(player => (
-                        player))
+                        React.cloneElement(player, {faceUpCards: true})))
                     }
                     </div>
             </div>
