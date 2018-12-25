@@ -9,9 +9,7 @@ export default class CardHand extends Component {
     render() {
         return (
             <div className={'cards'}>
-                {this.props.cards.map(card => (
-                    card
-                ))}
+                {this.props.cards.map(card =>(card))};
             </div>
         )
     }

@@ -1,41 +1,48 @@
 import React, { Component } from 'react';
 import RoundOne from "./RoundOne/RoundOne";
 import PlayersDropdown from "./PlayersDropdown";
+import Deck from "./CardDeck/Deck";
+import Player from "./Player";
 
 export default class HomePage extends Component {
     constructor (props) {
         super(props);
+        this.cardFlip = this.cardFlip.bind(this);
+        this.selectPlayers = this.selectPlayers.bind(this);
         this.state = {
             round: 0,
             numPlayers: 1,
-            component: null
-
+            component: <PlayersDropdown onClick={this.selectPlayers}/>,
+            deck: new Deck(this.cardFlip)
         };
-        this.cardFlip = this.cardFlip.bind(this);
-        this.selectPlayers = this.selectPlayers.bind(this);
     }
 
     cardFlip (){
-        this.setState({round: this.state.round + 1});
+        const newRound = this.state.round + 1;
+        if(newRound >= this.state.numPlayers*4) {
+            this.setState({round: 0, component: <RoundTwo />})
+        } else (this.setState({round: newRound}))
     }
 
     selectPlayers(numPlayers) {
-        this.setState({ numPlayers: numPlayers});
-        this.setState({component: <RoundOne className={'one'}
-                                            round={this.state.round}
-                                            numPlayers={numPlayers}/>});
+        let p = [];
+        for(let i = 0; i < numPlayers; i++) {
+            let hand = this.state.deck.getCards(4);
+            p.push(<Player cards={hand}/>);
+        }
+        this.setState({numPlayers: numPlayers,
+                       players: p,
+                       component: <RoundOne className={'one'}
+                                            players={p}/>});
     }
 
     render() {
-        let component = this.state.component ?
-            this.state.component : <PlayersDropdown onClick={this.selectPlayers}/>;
-
         return (
             <div>
                 <div className={'site-title'}>{`Irish Poker`}</div>
                 <div className={'round'}>{`Round ${this.state.round}`}</div>
                 <div className={'round'}>{`Number of Players: ${this.state.numPlayers}`}</div>
-                {component}
+                {this.state.component}
             </div>
         )
     }

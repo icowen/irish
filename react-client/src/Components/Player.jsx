@@ -17,8 +17,5 @@ export default class Player extends Component{
 }
 
 Player.propTypes = {
-    cards: PropTypes.array,
-    id: PropTypes.number,
-    numPlayers: PropTypes.number,
-    turn: PropTypes.number
+    cards: PropTypes.array
 };

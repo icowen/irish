@@ -9,7 +9,6 @@ export default class Card extends Component {
             src: cardBack
         };
         this.onClick = this.onClick.bind(this);
-        this.flipCard = this.flipCard.bind(this);
     }
 
     flipCard() {
@@ -18,10 +17,8 @@ export default class Card extends Component {
     }
 
     onClick (){
-        if(this.props.isActive) {
             this.flipCard();
             this.props.onClick();
-        }
     }
 
     render() {

@@ -2,7 +2,8 @@ import Card from "./Card";
 import React from "react";
 
 export default class Deck{
-    constructor() {
+    constructor(onClick) {
+        this.onClick = onClick;
         this.availableCards = [];
         this.dealtCards = [];
         this.initDeck();
@@ -16,7 +17,7 @@ export default class Deck{
             for (let value in values) {
                 deck.push(<Card suit={suits[suit]}
                                 value={values[value]}
-                                onClick={()=> {}}
+                                onClick={this.onClick}
                                 key={suits[suit] + values[value]}/>)
             }
         }
