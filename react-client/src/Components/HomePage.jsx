@@ -26,7 +26,7 @@ export default class HomePage extends Component {
             this.setState({ round: 0,
                             section: 2,
                             component: <RoundTwo players={this.state.players}
-                                                          boardCards={this.state.deck.getCards(8)}/>})
+                                                 boardCards={this.state.deck.getCards(8)}/>})
         } else (this.setState({round: newRound}))
     }
 
