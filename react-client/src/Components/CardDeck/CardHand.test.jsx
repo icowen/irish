@@ -1,15 +1,10 @@
 import React from "react";
 import {shallow} from "enzyme";
 import CardHand from './CardHand'
-import Card from "./Card";
+import mockCards from "../__Mocks__/mockCards";
 
 describe('CardHand', function () {
-    let cards = [
-        <Card suit={'H'} value={'13'} key={1}/>,
-        <Card suit={'D'} value={'1'} key={2}/>,
-        <Card suit={'C'} value={'9'} key={3}/>,
-        <Card suit={'S'} value={'10'} key={4}/>
-    ];
+    let cards = mockCards.getHand();
     const component = shallow(<CardHand cards={cards}/>);
     const cardOne = component.find('.cards').props().children[1];
 

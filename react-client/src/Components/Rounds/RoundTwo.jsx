@@ -15,7 +15,7 @@ export default class RoundTwo extends Component {
                                 card)
                         }
                     </div>
-                    <div className={'cards'}>
+                    <div className={'cards take'}>
                         {this.props.boardCards.slice(4,8).map(card =>
                                 card)
                         }

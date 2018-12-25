@@ -16,7 +16,7 @@ export default class Player extends Component{
         let cards = this.props.faceUpCards ?
             this.flipCards() : this.props.cards;
         return(
-            <div className={'player'}>
+            <div className={`player${this.props.id}`}>
                 <div>{`Player ${this.props.id}`}</div>
                 <CardHand cards={cards}/>
             </div>
